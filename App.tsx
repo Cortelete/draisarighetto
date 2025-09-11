@@ -188,7 +188,7 @@ const App: React.FC = () => {
                     
                     <div className="mb-6" style={{ perspective: '1000px' }}>
                         <img 
-                            src="/logo.png" 
+                            src="/logo.svg" 
                             alt="Dr. Isabelli Righetto Logo" 
                             className={`w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-full object-cover transition-transform duration-2000 ${isSpinning ? 'logo-spin' : ''}`}
                             onClick={handleLogoClick}
