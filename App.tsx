@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ModalType } from './types';
 import Modal from './components/Modal';
 import LinkButton from './components/LinkButton';
@@ -161,7 +161,7 @@ const RatingModalContent: React.FC<{
                     />
                 ))}
             </div>
-            <p className="text-gray-400 text-sm">Clique nas estrelas para avaliar.</p>
+            <p className="text-gray-200 text-sm">Clique nas estrelas para avaliar.</p>
         </div>
     );
 };
@@ -169,9 +169,34 @@ const RatingModalContent: React.FC<{
 // --- MAIN APP COMPONENT --- //
 const App: React.FC = () => {
     const [activeModal, setActiveModal] = useState<ModalType>(ModalType.NONE);
-    const [isImageFlipped, setIsImageFlipped] = useState(false);
+    const [rotation, setRotation] = useState(0);
     const [rating, setRating] = useState(0);
+    // Fix: In browser environments, setInterval returns a number, not a NodeJS.Timeout object.
+    const timerId = useRef<number | null>(null);
     
+    const stopTimer = () => {
+        if (timerId.current) clearInterval(timerId.current);
+    };
+
+    const startTimer = () => {
+        stopTimer(); // Ensure no multiple timers running
+        timerId.current = setInterval(() => {
+            setRotation(prev => prev + 180);
+        }, 3000);
+    };
+
+    useEffect(() => {
+        startTimer();
+        return () => stopTimer();
+    }, []);
+
+    const handleImageClick = () => {
+        stopTimer();
+        // Add extra rotation for the spin effect on click
+        setRotation(prev => prev + 180 + 720); 
+        startTimer(); // Restart the timer after the manual flip
+    };
+
     const developerWhatsappUrl = `https://wa.me/5541988710303?text=${encodeURIComponent("Olá, vi o link da Dra. Isabelli Righetto e quero um site igual!")}`;
 
     return (
@@ -180,11 +205,14 @@ const App: React.FC = () => {
                 <div className="w-full bg-gradient-to-br from-[#8c634c] via-[#c7b7a9] to-[#5a3f31] animated-gradient rounded-3xl shadow-2xl p-6 sm:p-8 text-center backdrop-blur-xl border border-white/10">
                     
                     <div 
-                        className="mb-6 w-28 h-28 sm:w-32 sm:h-32 mx-auto cursor-pointer" 
+                        className="mb-6 w-28 h-28 sm:w-32 sm:h-32 mx-auto" 
                         style={{ perspective: '1000px' }}
-                        onClick={() => setIsImageFlipped(prev => !prev)}
                     >
-                         <div className={`flipper w-full h-full ${isImageFlipped ? 'is-flipped' : ''}`}>
+                         <div 
+                            className="flipper w-full h-full cursor-pointer"
+                            style={{ transform: `rotateY(${rotation}deg)` }}
+                            onClick={handleImageClick}
+                        >
                             <img 
                                 src="/profile.png" 
                                 alt="Dr. Isabelli Righetto Profile" 
