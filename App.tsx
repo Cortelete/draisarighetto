@@ -54,7 +54,7 @@ const WhatsappModalContent: React.FC<{ onClose: () => void }> = ({ onClose }) =>
         }
         
         const formattedReasons = reasons.map(r => `- ${r}`).join('\n');
-        const message = `Olá, Dra. Isabelli! 👋\n\nGostaria de agendar uma consulta.\n\n*Paciente:*\n${name}\n\n*Motivo da Consulta:*\n${formattedReasons}\n\nAguardo seu retorno para combinarmos o melhor horário.\nObrigado(a)! 😊`;
+        const message = `Olá, Dra. Isabelli!\n\nGostaria de agendar uma consulta.\n\n*Paciente:*\n${name}\n\n*Motivo da Consulta:*\n${formattedReasons}\n\nAguardo seu retorno para combinarmos o melhor horário.\nObrigado(a)!`;
         const whatsappUrl = `https://wa.me/5541999801734?text=${encodeURIComponent(message)}`;
         
         window.open(whatsappUrl, '_blank');
