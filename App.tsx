@@ -253,7 +253,7 @@ const App: React.FC = () => {
                     <p className="text-sm sm:text-base text-rose-900/80 mt-2 italic">"O sorriso é a manifestação dos sentimentos da alma."</p>
 
                     <div className="mt-8 space-y-3 sm:space-y-4">
-                        <LinkButton icon={<InstagramIcon />} text="Instagram" onClick={() => window.open('https://www.instagram.com/isabellirighetto/', '_blank')} />
+                        <LinkButton icon={<InstagramIcon />} text="Instagram" onClick={() => window.open('https://www.instagram.com/draisabellirighetto', '_blank')} />
                         <LinkButton icon={<WhatsAppIcon />} text="Agendar Horário" onClick={() => setActiveModal(ModalType.WHATSAPP)} />
                         <LinkButton icon={<EmailIcon />} text="E-mail" onClick={() => setActiveModal(ModalType.EMAIL)} />
                         <LinkButton icon={<LocationIcon />} text="Localização" onClick={() => setActiveModal(ModalType.LOCATION)} />
