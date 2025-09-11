@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ModalType } from './types';
 import Modal from './components/Modal';
 import LinkButton from './components/LinkButton';
@@ -170,14 +169,8 @@ const RatingModalContent: React.FC<{
 // --- MAIN APP COMPONENT --- //
 const App: React.FC = () => {
     const [activeModal, setActiveModal] = useState<ModalType>(ModalType.NONE);
-    const [isSpinning, setIsSpinning] = useState(false);
+    const [isImageFlipped, setIsImageFlipped] = useState(false);
     const [rating, setRating] = useState(0);
-
-    const handleLogoClick = () => {
-        if (isSpinning) return;
-        setIsSpinning(true);
-        setTimeout(() => setIsSpinning(false), 2000); // duration of animation
-    };
     
     const developerWhatsappUrl = `https://wa.me/5541988710303?text=${encodeURIComponent("Olá, vi o link da Dra. Isabelli Righetto e quero um site igual!")}`;
 
@@ -186,14 +179,23 @@ const App: React.FC = () => {
             <main className="w-full max-w-md mx-auto flex flex-col items-center justify-center flex-grow">
                 <div className="w-full bg-gradient-to-br from-[#8c634c] via-[#c7b7a9] to-[#5a3f31] animated-gradient rounded-3xl shadow-2xl p-6 sm:p-8 text-center backdrop-blur-xl border border-white/10">
                     
-                    <div className="mb-6" style={{ perspective: '1000px' }}>
-                        <img 
-                            src="/logo.png" 
-                            alt="Dr. Isabelli Righetto Logo" 
-                            className={`w-28 h-28 sm:w-32 sm:h-32 mx-auto rounded-full object-cover transition-transform duration-2000 ${isSpinning ? 'logo-spin' : ''}`}
-                            onClick={handleLogoClick}
-                            style={{ transformStyle: 'preserve-3d' }}
-                        />
+                    <div 
+                        className="mb-6 w-28 h-28 sm:w-32 sm:h-32 mx-auto cursor-pointer" 
+                        style={{ perspective: '1000px' }}
+                        onClick={() => setIsImageFlipped(prev => !prev)}
+                    >
+                         <div className={`flipper w-full h-full ${isImageFlipped ? 'is-flipped' : ''}`}>
+                            <img 
+                                src="/profile.png" 
+                                alt="Dr. Isabelli Righetto Profile" 
+                                className="front-face w-full h-full object-cover"
+                            />
+                            <img 
+                                src="/logo.png" 
+                                alt="Dr. Isabelli Righetto Logo" 
+                                className="back-face w-full h-full object-cover"
+                            />
+                        </div>
                     </div>
 
                     <h1 className="text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-200 via-white to-gray-300 animated-gradient-text">
