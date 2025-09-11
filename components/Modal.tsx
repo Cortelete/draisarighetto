@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 
 interface ModalProps {
@@ -22,12 +23,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       onClick={onClose}
     >
       <div
-        className="bg-gradient-to-br from-[#8c634c] via-[#c7b7a9] to-[#5a3f31] animated-gradient rounded-3xl shadow-2xl p-6 sm:p-8 w-full max-w-md relative transform transition-all duration-300 scale-95 animate-scale-in border border-white/10 backdrop-blur-xl"
+        className="bg-gradient-to-br from-[#E6A4B4] via-[#F3D7CA] to-[#C88EA7] animated-gradient rounded-3xl shadow-2xl p-6 sm:p-8 w-full max-w-md relative transform transition-all duration-300 scale-95 animate-scale-in border border-white/10 backdrop-blur-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-200 hover:text-white transition-colors duration-200 z-10"
+          className="absolute top-4 right-4 text-rose-950 hover:text-rose-700 transition-colors duration-200 z-10"
           aria-label="Close modal"
         >
           <CloseIcon className="w-6 h-6" />
