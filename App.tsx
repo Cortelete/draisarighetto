@@ -222,7 +222,9 @@ const App: React.FC = () => {
     return (
         <div className="min-h-screen w-full bg-gradient-to-br from-[#fde2e4] via-[#fff1f2] to-[#fad1d6] animated-gradient-text p-4 flex flex-col items-center justify-between text-gray-800">
             <main className="w-full max-w-md mx-auto flex flex-col items-center justify-center flex-grow">
-                <div className="w-full bg-gradient-to-br from-[#E6A4B4] via-[#F3D7CA] to-[#C88EA7] animated-gradient rounded-3xl shadow-2xl p-6 sm:p-8 text-center backdrop-blur-xl border border-white/10">
+                <div className="relative w-full bg-gradient-to-br from-[#E6A4B4] via-[#F3D7CA] to-[#C88EA7] animated-gradient rounded-3xl shadow-2xl p-6 sm:p-8 text-center backdrop-blur-xl border border-white/10">
+                    
+                    <img src="/outubrorosa.png" alt="Outubro Rosa" className="absolute top-4 left-4 w-10 h-10 object-contain" />
                     
                     <div 
                         className="mb-6 w-28 h-28 sm:w-32 sm:h-32 mx-auto" 
